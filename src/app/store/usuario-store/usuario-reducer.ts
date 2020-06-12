@@ -1,9 +1,10 @@
 import { UsuarioState } from './usuario-state';
 import { IAction } from '@dipujaen/dpj-models-shared';
-import { ACTION_CAMBIAR_USUARIO } from './usuario-action';
+import { ACTION_CAMBIAR_USUARIO, ACTION_CAMBIAR_TOKEN } from './usuario-action';
 
 const initialState: UsuarioState = {
-    usuario: ''
+    usuario: '',
+    token: ''
 };
 
 export function usuarioReducer(state = initialState, action: IAction): UsuarioState {
@@ -11,6 +12,10 @@ export function usuarioReducer(state = initialState, action: IAction): UsuarioSt
         case ACTION_CAMBIAR_USUARIO:
             return {
                 ...state, usuario: action.payload
+            };
+        case ACTION_CAMBIAR_TOKEN:
+            return {
+                ...state, token: action.payload
             };
     }
 

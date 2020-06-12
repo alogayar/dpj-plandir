@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    padding: 20px;
+    background-color: white;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+app-footer {
+    padding: 20px;
+    height: 10%;
+}
+
+app-header {
+    padding: 20px;
+}
+
+app-sidebar {
+    padding: 20px;
+    padding-right: 20px;
+}
