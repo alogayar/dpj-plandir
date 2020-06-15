@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -11,7 +12,7 @@ import { DpjServicesPdwService } from "@dipujaen/dpj-services-pdw";
 import { DpjServicesArqService } from "@dipujaen/dpj-services-arq";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 // PRIMENG
 import { MessageService } from "primeng/api";
@@ -23,14 +24,22 @@ import { rootReducer } from "./store/root-reducer";
 import { ReduxService } from "./services/redux.service";
 import { HomeComponent } from "./components/home/home.component";
 import { AccesoComponent } from "./components/acceso/acceso.component";
-import { AuthGuardService } from "./services/auth-guard.service";
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ContentComponent } from './components/content/content.component';
+import { HeaderComponent } from "./components/header/header.component";
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { FooterComponent } from "./components/footer/footer.component";
+import { ContentComponent } from "./components/content/content.component";
+import { AuthGuard } from "./guards/auth.guard";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AccesoComponent, HeaderComponent, SidebarComponent, FooterComponent, ContentComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AccesoComponent,
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    ContentComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,36 +49,32 @@ import { ContentComponent } from './components/content/content.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    BrowserAnimationsModule
   ],
   providers: [
     MessageService,
     ReduxService,
     DpjServicesPdwService,
     DpjServicesArqService,
-    AuthGuardService,
-    { provide: "ENDPOINT", useValue: environment.endpointWSO2 },
+    AuthGuard,
+    { provide: 'ENDPOINT', useValue: environment.endpointWSO2 },
     {
-      provide: "USUARIO",
+      provide: 'USUARIO',
+      useFactory: (reduxService: ReduxService) =>
+        reduxService.getUsuarioState().subscribe((usuario) => usuario),
+      deps: [ReduxService],
+      multi: true,
+    },
+    { provide: 'IDAPLICA', useValue: environment.idaplica },
+    { provide: 'NUMFILAS', useValue: environment.numfilas },
+    {
+      provide: 'CUTRAMIT',
       useFactory: () => {
         /* Función para obtenerlo*/
       },
     },
-    { provide: "IDAPLICA", useValue: environment.idaplica },
-    { provide: "NUMFILAS", useValue: environment.numfilas },
-    {
-      provide: "CUTRAMIT",
-      useFactory: () => {
-        /* Función para obtenerlo*/
-      },
-    },
-    {
-      provide: "TOKEN",
-      useFactory: () => {
-        /* Función para obtenerlo*/
-      },
-    },
-    { provide: "API_URL", useValue: environment.apiUrl },
+    { provide: 'API_URL', useValue: environment.apiUrl },
   ],
   bootstrap: [AppComponent],
 })
