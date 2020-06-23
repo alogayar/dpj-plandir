@@ -1,5 +1,34 @@
+<!-- Proyecto PlandirNG  -->
+<!-- Estilos Login -->
+
 <body>
-    <div class="layout-wrapper layout-news-active">
-        <dpj-components-shared-login (token)="validateToken($event)"></dpj-components-shared-login>
+  <!-- login cuerpo -->
+  <div class="layout-login animated fadeIn">
+    <!-- capa por encima para la opacidad del fondo  -->
+    <div class="overlay">
+      <!-- contenedor del logo y los inputs -->
+      <div class="contenido-login">
+        <div class="contenido-der-logo">
+          <div class="logo">
+            <img
+              src="../../../assets/img/logo.png"
+              class="logo"
+              alt=""
+              srcset=""
+            />
+          </div>
+        </div>
+        <div class="contenido-izq-acceso">
+          <div class="col-12 bienvenido">
+            <p>Bienvenido <span class="plandir"> al Plan Director</span></p>
+          </div>
+          <div class="col-12 acceso">
+            <dpj-components-shared-login
+              (token)="validateToken($event)"
+            ></dpj-components-shared-login>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </body>

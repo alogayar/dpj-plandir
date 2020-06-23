@@ -1,254 +1,192 @@
-/* You can add global styles to this file, and also import other style files */
+// -----------------------------------------------------------------------------
+// Estilos definidos para la pagina de login
+// -----------------------------------------------------------------------------
 
-.ng-tns-c2-0.ui-panel-titlebar.ui-widget-header.ui-helper-clearfix.ui-corner-all.ng-star-inserted {
-    background-color: #4D4D4D;
-    color: white;
+//Colores para el login
+$colores_login: (
+  logoDiputacion: rgb(105, 142, 2),
+  logoSombra: 0px 5px 4px 0px rgba(0, 0, 0, 0.2), 
+);
+
+$fuenteLogin: "Poppins", sans-serif;
+
+/* Mixins propios para el login */
+/*---------------------------------------------------------------------*/
+@mixin flex($display: flex, $justify: center, $align: center) {
+  display: $display;
+  justify-content: $justify;
+  align-items: $align;
 }
 
-.pi.pi-minus {
-    background-color: white !important;
+@mixin login_shadow($shadowLogin) {
+  box-shadow: $shadowLogin;
+}
+@mixin borde($borde: 2px solid #000) {
+  border: $borde;
+}
+/* Animaciones */
+/*---------------------------------------------------------------------*/
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
-.pi.pi-plus {
-    background-color: white !important;
+.fast {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
-
-/* You can add global styles to this file, and also import other style files */
-
-body .ui-button.ui-state-default.ui-button-success,
-body .ui-buttonset.ui-button-success>.ui-button.ui-state-default {
-    background-color: #85a20c !important;
-    border: 1px solid #85a20c !important;
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
 
-fieldset {
-    border: 1px solid #333333 !important;
+.fadeIn {
+  animation-name: fadeIn;
 }
-
-body .ui-inputtext {
-    border: 1px solid black !important;
+/*---------------------------------------------------------------------*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Roboto, Helvetica Neue, sans-serif !important;
-    font-size: inherit !important;
-    font-weight: 400 !important;
-    background-color: #8EA22D;
-    height: 100%;
-}
+  background-color: #fff;
 
-body .ui-inputtext:enabled:focus:not(.ui-state-error) {
-    box-shadow: 0 0 0 0.1em #85a20c !important;
-}
+  /* layout prinpipal */
+  .layout-login {
+    font-family: $fuenteLogin;
+    width: 100vw;
+    height: 600px;
+    background: url("./assets/img/dipu.png") no-repeat top center;
 
-body .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
-    background-color: #85a20c !important;
-    box-shadow: 0 0 0 0.2em #85a20c !important;
-}
+    /* capa por encima para la trasparencia */
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.2);
+      @include flex();
 
-body .ui-datepicker table td.ui-datepicker-today>a,
-body .ui-datepicker table td.ui-datepicker-today>span {
-    background-color: #85a20c !important;
-}
+      /* contenedor del logo y el formulario */
+      .contenido-login {
+        @include flex();
+        width: 60%;
+        height: 50%;
+        opacity: 0.9;
+        @include login_shadow(map-get($colores_login, logoSombra));
+        background-color: #fff;
 
-.ui-datepicker-trigger.ui-calendar-button {
-    background-color: #85a20c !important;
-    border: 1px solid #85a20c !important;
-}
+        /* caja logo */
+        .contenido-der-logo {
+          width: 30%;
+          height: 100%;
+          background-color: map-get($colores_login, logoDiputacion);
+          @include flex();
+        }
+        /*caja formulario*/
+        .contenido-izq-acceso {
+          width: 70%;
+          height: 100%;
+        }
+        .contenido-izq-acceso {
+          .bienvenido {
+            padding-top: 15px;
+            font-size: 16px;
+            border-bottom: 2px solid #f1f1f1;
+            text-align: center;
+            height: 30%;
+            @include flex();
 
-body {
-    color: #73879C;
-    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.471;
-}
+            p {
+              text-transform: uppercase;
+              color: #b0b0b0;
+              font-weight: bold;
+              text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+              letter-spacing: 2px;
+            }
+            span {
+              color: map-get($colores_login, logoDiputacion);
+              letter-spacing: 2px;
+            }
+          }
+          /* Caja que contiene el formulario */
+          .acceso {
+            height: 100%;
 
-label {
-    color: #4D4D4D !important;
-    font-weight: bold;
-    font-size: 13px;
-}
+            /* Adaptamos algunos tamaños y colores de los componentes, solo para el login */
 
-.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only {
-    background-color: white !important;
-    color: black !important;
-}
+            .ui-inputtext {
+              font-size: 12px;
+              border: 1px solid map-get($colores_login, logoDiputacion);
+              box-shadow: 0 0 0 0.1rem
+                rgba(map-get($colores_login, logoDiputacion), 0.25);
 
-body .ui-button {
-    border: 1px solid#aaa !important;
-}
+              &:enabled:focus:not(.ui-state-error) {
+                box-shadow: 0 0 0 0.1em #85a20c !important;
+              }
+            }
+            label {
+              color: #4d4d4d !important;
+              font-weight: bold;
+              font-size: 13px;
+            }
+            .ui-button {
+              font-size: 12px;
+              background-color: map-get($colores_login, logoDiputacion);
+              border: 1px solid map-get($colores_login, logoDiputacion) !important;
+              border-radius: 1px;
+              color: #fff;
+              margin: 9px;
+              transition: all 500ms;
+              &:hover{
+                background-color: darken($color: map-get($colores_login, logoDiputacion), $amount: 10%);
+                border-color: 1px solid #4d4d4d;
+                box-shadow:  0px 3px 5px 0px rgba(map-get($colores_login, logoDiputacion), 0.2) ;
+               
+              }
+              .pi {
+                display: none;
+                font-size: 10px;
+                margin-right: 5px;
+              }
 
-.ui-g-12.botonera {
-    margin-top: 20px !important;
-    text-align: right !important;
-}
-
-body .ui-dropdown .ui-dropdown-trigger {
-    color: black !important;
-    background-color: transparent !important;
-}
-
-body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item.ui-state-highlight,
-body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group.ui-state-highlight {
-    background-color: #85a20c !important;
-}
-
-body .ui-panel .ui-panel-titlebar {
-    background-color: #4D4D4D !important;
-    color: white !important;
-    border: 1px solid #4D4D4D !important;
-}
-
-body .ui-datepicker table td>a.ui-state-active,
-body .ui-datepicker table td>span.ui-state-active {
-    background-color: #85a20c !important;
-}
-
-body .ui-table .ui-table-caption,
-body .ui-table .ui-table-summary {
-    background-color: #4D4D4D !important;
-    color: white !important;
-    border: 1px solid #4D4D4D !important;
-}
-
-.float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: white !important;
-    color: black !important;
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 3px #999;
-}
-
-.my-float {
-    margin-top: 22px;
-}
-
-textarea.ng-untouched.ng-pristine.ng-valid {
-    width: 100%;
-}
-
-h5 {
-    margin-block-end: 0em !important;
-    margin-block-start: 0em !important;
-    color: white;
-}
-
-.ui-g-1,
-.ui-g-2,
-.ui-g-3,
-.ui-g-4,
-.ui-g-5,
-.ui-g-6,
-.ui-g-7,
-.ui-g-8,
-.ui-g-9,
-.ui-g-10,
-.ui-g-11,
-.ui-g-12 {
-    padding: 0.2em !important;
-}
-
-.ui-g-1.row.ng-star-inserted {
-    margin-block-start: 1em;
-}
-
-
-/* Menu */
-
-body .ui-menu .ui-menuitem-link,
-body .ui-menubar .ui-menuitem-link,
-body .ui-tieredmenu .ui-menuitem-link,
-body .ui-contextmenu .ui-menuitem-link,
-body .ui-megamenu .ui-menuitem-link,
-body .ui-slidemenu .ui-menuitem-link {
-    color: transparent !important;
-}
-
-body .ui-menu .ui-menuitem-link .ui-menuitem-text,
-body .ui-menubar .ui-menuitem-link .ui-menuitem-text,
-body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-text,
-body .ui-contextmenu .ui-menuitem-link .ui-menuitem-text,
-body .ui-megamenu .ui-menuitem-link .ui-menuitem-text,
-body .ui-slidemenu .ui-menuitem-link .ui-menuitem-text {
-    color: white !important;
-}
-
-body .ui-tieredmenu .ui-menuitem {
-    background-color: #85a20c !important;
-}
-
-span.ui-submenu-icon.pi.pi-fw.pi-caret-right.ng-star-inserted {
-    display: none !important;
-}
-
-body .ui-menu .ui-menuitem-link:hover,
-body .ui-menubar .ui-menuitem-link:hover,
-body .ui-tieredmenu .ui-menuitem-link:hover,
-body .ui-contextmenu .ui-menuitem-link:hover,
-body .ui-megamenu .ui-menuitem-link:hover,
-body .ui-slidemenu .ui-menuitem-link:hover {
-    background-color: #4D4D4D !important;
-    color: white !important;
-}
-
-body .ui-tieredmenu .ui-submenu .ui-menuitem {
-    background-color: #4D4D4D !important;
-}
-
-body .ui-tieredmenu .ui-menuitem.ui-menuitem-active>.ui-menuitem-link {
-    background-color: #4D4D4D !important;
-    color: white !important;
-}
-
-body .ui-menu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-menubar .ui-menuitem-link .ui-menuitem-icon,
-body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-contextmenu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-megamenu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-slidemenu .ui-menuitem-link .ui-menuitem-icon {
-    color: white !important;
-}
-
-body .ui-menu .ui-menuitem-link:focus,
-body .ui-menubar .ui-menuitem-link:focus,
-body .ui-tieredmenu .ui-menuitem-link:focus,
-body .ui-contextmenu .ui-menuitem-link:focus,
-body .ui-megamenu .ui-menuitem-link:focus,
-body .ui-slidemenu .ui-menuitem-link:focus {
-    box-shadow: inset 0 0 0 0.2em #85a20c !important;
-}
-
-li.ui-menuitem.ui-widget.ui-corner-all {
-    border-radius: 0px !important;
-}
-
-span.ui-submenu-icon pi pi-fw pi-caret-right ng-star-inserted {
-    color: transparent !important;
-}
-
-span.ui-submenu-icon pi pi-fw pi-caret-right ng-star-inserted:hover {
-    color: transparent !important;
-}
-
-dpj-components-shared-login {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    /* bring your own prefixes */
-    transform: translate(-50%, -50%);
-}
-
-p {
-    color: white !important;
-}
-
-i.pi {
-    color: white;
+            }
+  
+            /* Redefinimos el paddind del grid que usa el componente de login para adaptarlo mas al contenido de la pagina*/
+            
+            .ui-g-1,
+            .ui-g-2,
+            .ui-g-3,
+            .ui-g-4,
+            .ui-g-5,
+            .ui-g-6,
+            .ui-g-7,
+            .ui-g-8,
+            .ui-g-9,
+            .ui-g-10,
+            .ui-g-11,
+            .ui-g-12 {
+              padding: 0.1em !important;
+            }
+  
+            h5 {
+              color:lightness($color: #3c3c3c);
+              font-size: 12px;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
 }
