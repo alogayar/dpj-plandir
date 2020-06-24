@@ -9,14 +9,7 @@
       <!-- contenedor del logo y los inputs -->
       <div class="contenido-login">
         <div class="contenido-der-logo">
-          <div class="logo">
-            <img
-              src="../../../assets/img/logo.png"
-              class="logo"
-              alt=""
-              srcset=""
-            />
-          </div>
+          <div class="logo"></div>
         </div>
         <div class="contenido-izq-acceso">
           <div class="col-12 bienvenido">
@@ -26,7 +19,33 @@
             <dpj-components-shared-login
               (token)="validateToken($event)"
             ></dpj-components-shared-login>
+            <div></div>
           </div>
+        </div>
+      </div>
+      <div class="acceso-clave">
+        <div class="acceso-clave-logo"></div>
+        <div class="acceso-clave-texto">
+          <span>
+            Cl@ve es un sistema orientado a unificar y simplificar el acceso
+            electrónico de los ciudadanos a los servicios públicos. Su objetivo
+            principal es que el ciudadano pueda identificarse ante la
+            Administración mediante claves concertadas (usuario más contraseña),
+            sin tener que recordar claves diferentes para acceder a los
+            distintos servicios.</span
+          >
+        </div>
+      </div>
+      <div class="acceso-certificado">
+        <div class="acceso-certificado-logo"></div>
+        <div class="acceso-certificado-texto">
+          <span>
+            En cumplimiento de lo dispuesto en la Ley Orgánica 3/2018, de 5 de
+            diciembre, de protección de datos personales y garantía de los
+            derechos digitales, la Excma. Diputación Provincial de Jaén le
+            informa que sus datos personales aportados con el certificado
+            digital serán incorporados a un fichero automatizado.</span
+          >
         </div>
       </div>
     </div>
