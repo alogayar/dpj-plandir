@@ -30,19 +30,39 @@
           </div>
           <!-- contiene el formulario usuario/contraseña -->
           <div class="col-4 box-ldap">
-            <div class="row texto-ldap">
-              <div class="col-12 texto ">
+            <div class="row texto-ldap borde1">
+              <div class="col-12 texto">
                 <p>Bienvenido <span class="plandir"> al Plan Director</span></p>
               </div>
             </div>
             <div class="row formulario-ldap">
-              <div class="col-12"></div>
+              <div class="col-12 formulario">
+                <dpj-components-shared-login
+                  (token)="validateToken($event)"
+                ></dpj-components-shared-login>
+              </div>
             </div>
           </div>
           <!-- contiene el acceso por clave -->
-          <div class="col-3"></div>
+          <div class="col-3 box-clave">
+            <div class="row logo-clave borde1">
+              <div class="col-12 logoclave"></div>
+            </div>
+            <div class="row texto-clave">
+              <div class="col-12 texto">
+                <span>
+                  Cl@ve es un sistema orientado a unificar y simplificar el
+                  acceso electrónico de los ciudadanos a los servicios públicos.
+                  Su objetivo principal es que el ciudadano pueda identificarse
+                  ante la Administración mediante claves concertadas (usuario
+                  más contraseña), sin tener que recordar claves diferentes para
+                  acceder a los distintos servicios.</span
+                >
+              </div>
+            </div>
+          </div>
           <!-- contiene el acceso por certificado -->
-          <div class="col-3"></div>
+          <div class="col-3 box-certi"></div>
         </div>
       </div>
     </div>
