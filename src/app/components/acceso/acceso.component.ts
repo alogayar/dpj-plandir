@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Component, OnInit, Renderer2, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef, HostListener, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
 import { ReduxService } from 'src/app/services/redux.service';
 import { IAction } from '@dipujaen/dpj-models-shared';
 import { ACTION_CAMBIAR_TOKEN } from 'src/app/store/usuario-store/usuario-action';
-import { Token } from '@angular/compiler/src/ml_parser/lexer';
+import '../../../assets/js/miniapplet/authenticator.js';
+import { environment } from '../../../environments/environment';
+import { DpjServicesArqService } from '@dipujaen/dpj-services-arq';
+import * as Cookies from 'js-cookie';
+declare var authenticate: any;
 
 @Component({
   selector: 'app-acceso',
@@ -12,25 +16,86 @@ import { Token } from '@angular/compiler/src/ml_parser/lexer';
 })
 export class AccesoComponent implements OnInit {
 
-  constructor(public router: Router, private usuarioRedux: ReduxService) {}
+  private _idaplica: string = environment.idaplica;
+  public get idaplica(): string {
+    return this._idaplica;
+  }
+  public set idaplica(value: string) {
+    this._idaplica = value;
+  }
+
+  constructor(public router: Router, private usuarioRedux: ReduxService, private dpjServicesArqService: DpjServicesArqService,
+    private activatedRoute: ActivatedRoute) {
+  }
+
+  updateCertificado(){
+
+    let certificado = (<HTMLInputElement>document.getElementById("certificado")).value;
+    (<HTMLInputElement>document.getElementById("certificado")).value="";
+    this.getTokenCertificado(certificado);
+  }
 
   ngOnInit() {
+
+    let cid = Cookies.get('cid'); 
+
+    if (cid!==undefined && cid !== null && cid !== ''){
+      this.getTokenClave(cid);
+      Cookies.remove('cid');
+    }
+
+  }
+
+  getTokenCertificado(certificado){
+
+    this.dpjServicesArqService
+    .getTokenCertificado(certificado, this.idaplica
+    )
+    .subscribe(
+      (res: any) => {
+        this.validateToken(res.token);
+      },
+      (err) => {
+        console.log(err.error.message);
+      }
+    );
+  }
+
+  getTokenClave(cid){
+    this.dpjServicesArqService
+    .getTokenClave(cid,this.idaplica)
+    
+    .subscribe(
+      (res: any) => {
+        this.validateToken(res.token);
+      },
+      (err) => {
+        console.log(err.error.message);
+      }
+    );
   }
 
   validateToken(token) {
 
     if (token !== null && token !== "") {
     
-      // Almacenamos el token en redux
       const storeToken: IAction = {
         type: ACTION_CAMBIAR_TOKEN,
         payload: token
       };
 
       this.usuarioRedux.updateState(storeToken);
-
       this.router.navigate(['home']);
     }
   }
 
+  accesoCertificado(){
+    authenticate();
+  }
+
+  accesoClave(){
+    window.location.href = environment.claveUrl;
+  }
 }
+
+

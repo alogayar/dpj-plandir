@@ -75,6 +75,7 @@ import { AuthGuard } from "./guards/auth.guard";
       },
     },
     { provide: 'API_URL', useValue: environment.apiUrl },
+    { provide: 'CLAVE_URL', useValue: environment.claveUrl }
   ],
   bootstrap: [AppComponent],
 })
