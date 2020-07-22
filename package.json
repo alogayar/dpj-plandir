@@ -39,7 +39,7 @@
         "jspdf": "^1.5.3",
         "jspdf-autotable": "^3.2.13",
         "primeicons": "^4.0.0-rc.2",
-        "primeng": "^9.0.0-rc.4",
+        "primeng": "^9.0.0",
         "rxjs": "~6.4.0",
         "tslib": "^1.10.0",
         "xlsx": "^0.15.5",
