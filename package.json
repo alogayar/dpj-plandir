@@ -9,6 +9,9 @@
         "lint": "ng lint",
         "e2e": "ng e2e"
     },
+    "publishConfig": {
+        "registry": "http://vmwjaen32:8081/repository/npm/:_auth=dWRpYmVyMDM6SWpla2l4OTg="
+    },
     "private": false,
     "dependencies": {
         "@angular/animations": "~8.2.14",
