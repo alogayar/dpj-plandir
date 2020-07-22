@@ -22,6 +22,7 @@
         "@angular/platform-browser-dynamic": "~8.2.14",
         "@angular/router": "~8.2.14",
         "@auth0/angular-jwt": "^4.2.0",
+        "@babel/plugin-transform-arrow-functions": "^7.10.1",
         "@dipujaen/dpj-components-shared": "^1.0.0",
         "@dipujaen/dpj-models-pdw": "^1.0.0",
         "@dipujaen/dpj-models-shared": "^1.0.0",
