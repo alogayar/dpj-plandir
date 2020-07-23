@@ -11,8 +11,8 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard] 
   },
-  { path: '', component: AccesoComponent,  },
-  { path: 'clave', component: AccesoComponent,  },
+  { path: '', component: AccesoComponent  },
+  { path: 'clave', component: AccesoComponent  },
   { path: '**', redirectTo: '' }
 ];
 

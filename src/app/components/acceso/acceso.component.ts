@@ -37,9 +37,16 @@ export class AccesoComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log("Llega cuando es clave");
+
     let cid = Cookies.get('cid'); 
 
+    console.log("Recuperación del cid");
+
     if (cid!==undefined && cid !== null && cid !== ''){
+
+      console.log("Llamada al servicio para comprobar el cid ");
+
       this.getTokenClave(cid);
       Cookies.remove('cid');
     }
