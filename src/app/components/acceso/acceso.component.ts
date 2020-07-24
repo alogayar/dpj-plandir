@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef, HostListener, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { ReduxService } from 'src/app/services/redux.service';
 import { IAction } from '@dipujaen/dpj-models-shared';
 import { ACTION_CAMBIAR_TOKEN } from 'src/app/store/usuario-store/usuario-action';
@@ -24,7 +24,7 @@ export class AccesoComponent implements OnInit {
     this._idaplica = value;
   }
 
-  constructor(public router: Router, private usuarioRedux: ReduxService, private dpjServicesArqService: DpjServicesArqService,
+  constructor(private router: Router, private usuarioRedux: ReduxService, private dpjServicesArqService: DpjServicesArqService,
     private activatedRoute: ActivatedRoute) {
   }
 
@@ -37,19 +37,21 @@ export class AccesoComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log("Llega cuando es clave");
+    //let cid = Cookies.get('cid'); 
 
-    let cid = Cookies.get('cid'); 
+    this.activatedRoute.queryParams.subscribe(params => {
+      let cid = params['cid'] ;
 
-    console.log("Recuperación del cid");
+      if (cid!==undefined && cid !== null && cid !== ''){
 
-    if (cid!==undefined && cid !== null && cid !== ''){
-
-      console.log("Llamada al servicio para comprobar el cid ");
-
-      this.getTokenClave(cid);
-      Cookies.remove('cid');
-    }
+        console.log("Llamada al servicio para comprobar el cid ");
+  
+        this.getTokenClave(cid);
+        //Cookies.remove('cid');
+      }
+  });
+    
+    
 
   }
 
