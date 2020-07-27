@@ -6,7 +6,7 @@ import { ACTION_CAMBIAR_TOKEN } from 'src/app/store/usuario-store/usuario-action
 import '../../../assets/js/miniapplet/authenticator.js';
 import { environment } from '../../../environments/environment';
 import { DpjServicesArqService } from '@dipujaen/dpj-services-arq';
-import * as Cookies from 'js-cookie';
+import { MessageService } from 'primeng/api';
 declare var authenticate: any;
 
 @Component({
@@ -25,7 +25,7 @@ export class AccesoComponent implements OnInit {
   }
 
   constructor(private router: Router, private usuarioRedux: ReduxService, private dpjServicesArqService: DpjServicesArqService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute, private messageService: MessageService) {
   }
 
   updateCertificado(){
@@ -37,22 +37,15 @@ export class AccesoComponent implements OnInit {
 
   ngOnInit() {
 
-    //let cid = Cookies.get('cid'); 
-
     this.activatedRoute.queryParams.subscribe(params => {
+      
       let cid = params['cid'] ;
 
       if (cid!==undefined && cid !== null && cid !== ''){
-
-        console.log("Llamada al servicio para comprobar el cid ");
   
         this.getTokenClave(cid);
-        //Cookies.remove('cid');
       }
   });
-    
-    
-
   }
 
   getTokenCertificado(certificado){
@@ -65,7 +58,7 @@ export class AccesoComponent implements OnInit {
         this.validateToken(res.token);
       },
       (err) => {
-        console.log(err.error.message);
+        this.messageService.add({severity:'error', summary: 'Fallo en la autenticación', detail:'El usuario no está registrado en el Sistema'});
       }
     );
   }
@@ -79,7 +72,7 @@ export class AccesoComponent implements OnInit {
         this.validateToken(res.token);
       },
       (err) => {
-        console.log(err.error.message);
+        this.messageService.add({severity:'error', summary: 'Fallo en la autenticación', detail:'El usuario no está registrado en el Sistema'});
       }
     );
   }
