@@ -1,58 +1,88 @@
 <!-- Proyecto PlandirNG  -->
 <!-- Estilos Login -->
 
+<style>
+    .borde1 {
+        border: 2px solid red;
+    }
+    
+    .borde2 {
+        border: 2px solid purple;
+    }
+</style>
 
 <body>
-    <!-- login cuerpo -->
-    <div class="layout-login animated fadeIn">
-        <!-- capa por encima para la opacidad del fondo  -->
-
-        <header class="img"></header>
-
-        <div class="overlay">
-
-            <!-- contenedor del logo y los inputs -->
-            <div class="contenido-login">
-                <div class="contenido-der-logo">
-                    <div class="logo"></div>
-                </div>
-                <div class="contenido-izq-acceso">
-                    <div class="col-12 bienvenido">
-                        <p>Bienvenido <span class="plandir"> al Plan Director</span></p>
-                    </div>
-                    <div class="col-12 acceso">
-                        <dpj-components-shared-login [idaplica]="idaplica" (token)="validateToken($event)"></dpj-components-shared-login>
-                        <div></div>
-                    </div>
-                </div>
+    <!-- layout principal -->
+    <div class="layout-principal animated fadeIn">
+        <!-- div contenedor imagen diputacion -->
+        <div class="row">
+            <div class="col-12">
+                <div class="layout-palacio-dipu"></div>
             </div>
-            <div class="acceso-clave d-none d-sm-block" (click)="accesoClave()">
-                <div class="acceso-clave-logo"></div>
-                <div class="acceso-clave-texto">
-                    <span>
-            Cl@ve es un sistema orientado a unificar y simplificar el acceso
-            electrónico de los ciudadanos a los servicios públicos. Su objetivo
-            principal es que el ciudadano pueda identificarse ante la
-            Administración mediante claves concertadas (usuario más contraseña),
-            sin tener que recordar claves diferentes para acceder a los
-            distintos servicios.</span
-          >
         </div>
-      </div>
-      <div class="acceso-certificado d-none d-sm-block" (click)="accesoCertificado()">
-        <div class="acceso-certificado-logo"></div>
-        <div class="acceso-certificado-texto">
-          <span>
-            En cumplimiento de lo dispuesto en la Ley Orgánica 3/2018, de 5 de
-            diciembre, de protección de datos personales y garantía de los
-            derechos digitales, la Excma. Diputación Provincial de Jaén le
-            informa que sus datos personales aportados con el certificado
-            digital serán incorporados a un fichero automatizado.</span
-          >
+
+        <!-- capa por encima para la trasparencia  -->
+        <div class="overlay">
+            <!-- contiene el logotipo -->
+            <div class="container layout-login">
+                <div class="row fila-logo">
+                    <div class="col-2 logo-dipu">
+                        <div class="logo"></div>
+                    </div>
+                    <!-- contiene el formulario usuario/contraseña -->
+                    <div class="col-4 box-ldap">
+                        <div class="row texto-ldap">
+                            <div class="col-12 texto">
+                                <p>Bienvenido <span class="plandir"> al Plan Director</span></p>
+                            </div>
+                        </div>
+                        <div class="row formulario-ldap">
+                            <div class="col-12 formulario">
+                                <dpj-components-shared-login (token)="validateToken($event)"></dpj-components-shared-login>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- contiene el acceso por clave -->
+                    <div class="col-3 box-clave" (click)="accesoClave()">
+                        <div class="row logo-clave">
+                            <div class="col-12 logoclave"></div>
+                        </div>
+                        <hr>
+                        <div class="row texto-clave">
+                            <div class="col-12 texto ">
+                                <span>
+                Cl@ve es un sistema orientado a unificar y simplificar el
+                acceso electrónico de los ciudadanos a los servicios públicos.
+                Su objetivo principal es que el ciudadano pueda identificarse
+                ante la Administración mediante claves concertadas (usuario
+                más contraseña), sin tener que recordar claves diferentes para
+                acceder a los distintos servicios.</span
+              >
+            </div>
+          </div>
         </div>
-      </div>
+        <!-- contiene el acceso por certificado -->
+        <div class="col-3 box-certi" (click)="accesoCertificado()">
+          <div class="row logo-certi">
+            <div class="col-12 logocerti"></div>
+          </div>
+          <hr>
+          <div class="row texto-certi">
+            <div class="col-12 texto">
+              <span>
+                En cumplimiento de lo dispuesto en la Ley Orgánica 3/2018, de
+                5 de diciembre, de protección de datos personales y garantía
+                de los derechos digitales, la Excma. Diputación Provincial de
+                Jaén le informa que sus datos personales aportados con el
+                certificado digital serán incorporados a un fichero
+                automatizado.</span
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <input type="text" id="certificado" style="display: none;" (window:certificado-event)="updateCertificado()">
-
+  </div>
+</div>
+<input type="text" id="certificado" style="display: none;" (window:certificado-event)="updateCertificado()">
 </body>

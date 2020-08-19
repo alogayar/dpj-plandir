@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+  private _usuario: string;
+  
+  public get usuario(): string {
+    return this._usuario;
+  }
+public set usuario(value: string) {
+    this._usuario = value;
+  }
+
   constructor() { }
 
   ngOnInit() {
+    
+    this.usuario = "77322670M";
   }
 
 }
