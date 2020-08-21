@@ -1,0 +1,8 @@
+<dpj-components-shared-fieldset class="glcg100 animated fadeIn" header="Mantenimiento de Países">
+    <dpj-components-shared-ayuda [mostrarAyuda]="mostrarAyuda" [ventana]="ventanaAyuda" (estado)="estadoAyuda($event)"></dpj-components-shared-ayuda>
+    <dpj-components-shared-menufcp [model]="itemsMenu"></dpj-components-shared-menufcp>
+    <br />
+    <dpj-components-shared-busqueda #glcg100Busqueda [busqueda]="busquedaParams" (busquedaForm)="buscar($event)"></dpj-components-shared-busqueda>
+    <br />
+    <dpj-components-shared-listbox [params]="lbgcg100Id102Params" (detalle)="detalleLbgcg100id102($event)" (editar)="editarLbgcg100id102($event)" (borrar)="borrarLbgcg100id102($event)"></dpj-components-shared-listbox>
+</dpj-components-shared-fieldset>

@@ -1,1 +1,17 @@
-<router-outlet name="content"></router-outlet>
+
+<p-tabView (onChange)="cambiaPestana($event)" (onClose)="cierraPestana($event)">
+  <p-tabPanel header="INICIO" [closable]="false" tooltip="Inicio Plan Director Web" tooltipPosition="top">
+      Pestaña fija de inicio, con el módulo de últimas noticias, últimos movimientos del usuario...
+  </p-tabPanel>
+  <!--<p-tabPanel [header]="item.header" [closable]="true" *ngFor="let item of items; let i = index" [selected]="i == 0" [tooltip]="item.tooltip" tooltipPosition="top" [ngSwitch]="item.app">
+      {{ item.content }}
+  </p-tabPanel>-->
+  <p-tabPanel header="Primera" [closable]="true" tooltip="Pruebas" tooltipPosition="top" cache="true">
+    <app-glcg100></app-glcg100>
+  </p-tabPanel>
+  <p-tabPanel header="Segunda" [closable]="true" tooltip="Pruebas2" tooltipPosition="top" cache="true">
+      <a routerLink="/a">A </a>
+      <a routerLink="/b">B </a>
+
+  </p-tabPanel>
+</p-tabView>

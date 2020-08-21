@@ -10,8 +10,6 @@ export class AppComponent {
   title = "Plan Director Web";
 
   constructor() {
-    console.log(environment.mensaje);
-  }
-
-  
+      console.log(environment.mensaje);
+  }  
 }

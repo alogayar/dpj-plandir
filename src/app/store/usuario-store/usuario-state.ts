@@ -1,4 +1,4 @@
 export interface UsuarioState {
-    usuario: string;
-    token: string;
+    cusuario: string;
+    tokenUsuario: string;
 }

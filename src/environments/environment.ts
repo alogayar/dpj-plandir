@@ -8,9 +8,10 @@ export const environment = {
   usuario: '',
   idaplica: 'ANGULAR8',
   cutramit: '',
-  endpointWSO2: 'https://172.20.31.211:8243/',
+  endpointWSO2: 'https://172.20.31.213:8243/',
   numfilas: 500,
-  apiUrl: 'https://dapi.dipujaen.es/'
+  apiUrl: 'https://dapi.dipujaen.es/',
+  claveUrl: 'https://dclave.dipujaen.es/IndexPage?par1=LUIS'
 };
 
 /*

@@ -5,6 +5,7 @@
   .borde1 {
     border: 2px solid red;
   }
+
   .borde2 {
     border: 2px solid purple;
   }
@@ -44,13 +45,13 @@
             </div>
           </div>
           <!-- contiene el acceso por clave -->
-          <div class="col-3 box-clave ">
+          <div class="col-3 box-clave" (click)="accesoClave()">
             <div class="row logo-clave">
-              <div class="col-12 logoclave "></div>
+              <div class="col-12 logoclave"></div>
             </div>
-            <hr>
-            <div class="row texto-clave   ">
-              <div class="col-12 texto "> 
+            <hr />
+            <div class="row texto-clave">
+              <div class="col-12 texto">
                 <span>
                   Cl@ve es un sistema orientado a unificar y simplificar el
                   acceso electrónico de los ciudadanos a los servicios públicos.
@@ -63,12 +64,12 @@
             </div>
           </div>
           <!-- contiene el acceso por certificado -->
-          <div class="col-3 box-certi ">
+          <div class="col-3 box-certi" (click)="accesoCertificado()">
             <div class="row logo-certi">
-              <div class="col-12 logocerti "></div>
+              <div class="col-12 logocerti"></div>
             </div>
-            <hr>
-            <div class="row texto-certi ">
+            <hr />
+            <div class="row texto-certi">
               <div class="col-12 texto">
                 <span>
                   En cumplimiento de lo dispuesto en la Ley Orgánica 3/2018, de
@@ -85,4 +86,10 @@
       </div>
     </div>
   </div>
+  <input
+    type="text"
+    id="certificado"
+    style="display: none;"
+    (window:certificado-event)="updateCertificado()"
+  />
 </body>

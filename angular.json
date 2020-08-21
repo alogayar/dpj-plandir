@@ -28,11 +28,14 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "./node_modules/primeicons/primeicons.css",                           
-                            "./node_modules/primeng/resources/primeng.min.css",                           
-                            "./dist/css/plandirNG.css"
+                            "./node_modules/primeicons/primeicons.css",
+                            "./node_modules/primeng/resources/primeng.min.css",
+                            "./src/css/plandirNG.css"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "./src/assets/js/miniapplet/client/miniapplet.js",
+                            "./src/assets/js/miniapplet/authenticator.js"
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -97,7 +100,10 @@
                             "./node_modules/primeng/resources/primeng.min.css",
                             "src/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "./src/assets/js/miniapplet/client/miniapplet.js",
+                            "./src/assets/js/miniapplet/authenticator.js"
+                        ]
                     }
                 },
                 "lint": {
